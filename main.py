@@ -55,15 +55,26 @@ def decoding(string:str, reverse_table:dict):
     
     return result_string
 
+def add_padding(string:str):
+    need_padding_count = 4 - (len(string) % 4)
+    if need_padding_count == 1:
+        string += "="
+    elif need_padding_count == 2:
+        string += "=="
+    return string
+    
 
 if __name__=="__main__":
-    string = input("Please Input string: ")
+    #string = input("Please Input string: ")
     
     default_base64_table = make_table()
-    test_string = 'abcdeQRTEVP'
-    print("origin_string:", string)
-    encoding_string = encoding(string, default_base64_table)
+    #test_string = 'abcdeQRTEVP'
+    test_string = 'aaaaaA'
+    print("origin_string:", test_string)
+    encoding_string = encoding(test_string, default_base64_table)
     print("encoding_string:", encoding_string)
-    reverse_base64_table = make_reverse_table(default_base64_table)
-    decoding_string = decoding(encoding_string, reverse_base64_table)
-    print("decoding_string:", decoding_string)
+    padding_string = add_padding(encoding_string)
+    print("padding_string:", padding_string)
+    #reverse_base64_table = make_reverse_table(default_base64_table)
+    #decoding_string = decoding(encoding_string, reverse_base64_table)
+    #print("decoding_string:", decoding_string)
