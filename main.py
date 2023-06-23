@@ -51,8 +51,8 @@ def decoding(string:str, reverse_table:dict):
         binary_string += reverse_table[s]
 
     #패딩
-    while binary_string.endswith('000000'):
-        binary_string = binary_string[:-6]
+    #while binary_string.endswith('000000'):
+    #    binary_string = binary_string[:-6]
         
     result_string = ''
     for i in range(0, len(binary_string), 8):
