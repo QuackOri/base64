@@ -34,3 +34,35 @@ default_base64_table = make_table()
 string = 'abcde'
 encoding_string = encoding(string, default_base64_table)
 print(encoding_string)
+
+
+###############################################
+###############################################
+###############################################
+
+
+def make_reverse_table(table:dict):
+    return {v: k for k, v in table.items()}
+
+def decoding(string:str, reverse_table:dict):
+    binary_string = ''
+    
+    for s in string:
+        binary_string += reverse_table[s]
+
+    #패딩
+    while binary_string.endswith('000000'):
+        binary_string = binary_string[:-6]
+        
+    result_string = ''
+    for i in range(0, len(binary_string), 8):
+        target = binary_string[i:i+8]
+        result_char = chr(int(target, 2))
+        
+        result_string += result_char
+    
+    return result_string
+
+reverse_base64_table = make_reverse_table(default_base64_table)
+decoding_string = decoding(encoding_string, reverse_base64_table)
+print(decoding_string)
