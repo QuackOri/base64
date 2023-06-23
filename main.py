@@ -8,6 +8,7 @@ def make_table():
     
     return table_dict
 
+
 def encoding(string:str, table:dict):
     
     default_base64_table = table
@@ -31,20 +32,9 @@ def encoding(string:str, table:dict):
     return result_string
 
 
-default_base64_table = make_table()
-string = 'abcdeQRTEVP'
-print("origin_string:", string)
-encoding_string = encoding(string, default_base64_table)
-print("encoding_string:", encoding_string)
-
-
-###############################################
-###############################################
-###############################################
-
-
 def make_reverse_table(table:dict):
     return {v: k for k, v in table.items()}
+
 
 def decoding(string:str, reverse_table:dict):
     binary_string = ''
@@ -65,6 +55,15 @@ def decoding(string:str, reverse_table:dict):
     
     return result_string
 
-reverse_base64_table = make_reverse_table(default_base64_table)
-decoding_string = decoding(encoding_string, reverse_base64_table)
-print("decoding_string:", decoding_string)
+
+if __name__=="__main__":
+    string = input("Please Input string: ")
+    
+    default_base64_table = make_table()
+    test_string = 'abcdeQRTEVP'
+    print("origin_string:", string)
+    encoding_string = encoding(string, default_base64_table)
+    print("encoding_string:", encoding_string)
+    reverse_base64_table = make_reverse_table(default_base64_table)
+    decoding_string = decoding(encoding_string, reverse_base64_table)
+    print("decoding_string:", decoding_string)
