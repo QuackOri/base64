@@ -17,8 +17,9 @@ def encoding(string:str, table:dict):
         binary_string += format(ord(s), "b").zfill(8)
 
     count_zero = 6 - (len(binary_string) % 6)
-    for _ in range(count_zero):
-        binary_string += '0'
+    if count_zero != 6:
+        for _ in range(count_zero):
+            binary_string += '0'
 
     result_string = ''
     for i in range(len(binary_string) // 6):
@@ -31,9 +32,10 @@ def encoding(string:str, table:dict):
 
 
 default_base64_table = make_table()
-string = 'abcde'
+string = 'abcdeQRTEVP'
+print("origin_string:", string)
 encoding_string = encoding(string, default_base64_table)
-print(encoding_string)
+print("encoding_string:", encoding_string)
 
 
 ###############################################
@@ -65,4 +67,4 @@ def decoding(string:str, reverse_table:dict):
 
 reverse_base64_table = make_reverse_table(default_base64_table)
 decoding_string = decoding(encoding_string, reverse_base64_table)
-print(decoding_string)
+print("decoding_string:", decoding_string)
